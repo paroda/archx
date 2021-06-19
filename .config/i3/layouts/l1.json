@@ -1,0 +1,100 @@
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "marks": [],
+    "percent": 1.0,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "marks": [],
+            "percent": 0.25,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "marks": [],
+                    "name": "fish",
+                    "percent": 0.5,
+                    "swallows": [
+                        {
+                            "class": "^Alacritty$"
+                        }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "marks": [],
+                    "name": "fish",
+                    "percent": 0.5,
+                    "swallows": [
+                        {
+                            "class": "^Alacritty$"
+                        }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "marks": [],
+            "percent": 0.5,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "marks": [],
+                    "name": "Google Chrome",
+                    "percent": 0.5,
+                    "swallows": [
+                        {
+                            "class": "^Google\\-chrome$"
+                        }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "marks": [],
+                    "name": "Google Chrome",
+                    "percent": 0.5,
+                    "swallows": [
+                        {
+                            "class": "^Google\\-chrome$"
+                        }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "marks": [],
+            "name": "Emacs",
+            "percent": 0.25,
+            "swallows": [
+                {
+                    "class": "^Emacs$"
+                }
+            ],
+            "type": "con"
+        }
+    ]
+}

@@ -1,0 +1,75 @@
+theme = "nord-dark"
+icons = "awesome"
+
+[[block]]
+block = "pacman"
+interval = 600
+format = "{pacman} updates available"
+format_singular = "{pacman} update available"
+format_up_to_date = "system up to date"
+critical_updates_regex = "(linux|linux-lts|linux-zen)"
+on_click = "fakeroot pacman -Qu --dbpath /tmp/checkup-db-dipu/ | wofi --show dmenu"
+
+[[block]]
+block = "docker"
+format = "{running}/{total}"
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "used"
+format = "{icon} {used}/{total}"
+unit = "GB"
+warning = 80.0
+alert = 50.0
+
+[[block]]
+block = "disk_space"
+path = "/home/dipu/.dipu"
+alias = "dipu"
+info_type = "used"
+format = "{icon} {alias}: {used}/{total}"
+unit = "GB"
+warning = 80.0
+alert = 50.0
+
+[[block]]
+block = "disk_space"
+path = "/home/dipu/my"
+alias = "my"
+info_type = "used"
+format = "{icon} {alias}: {used}/{total}"
+unit = "GB"
+warning = 50.0
+alert = 30.0
+
+[[block]]
+block = "disk_space"
+path = "/home/dipu/vacuumlabs"
+alias = "vlab"
+info_type = "used"
+format = "{icon} {alias}: {used}/{total}"
+unit = "GB"
+warning = 50.0
+alert = 30.0
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
+warning_mem = 80
+critical_mem = 95
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "load"
+interval =  1
+format = "{1m}"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d %m %R"

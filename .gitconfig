@@ -1,0 +1,7 @@
+[user]
+	name = Pradyumna Parida
+	email = paroda@gmail.com
+[includeIf "gitdir:~/vacuumlabs/"]
+	path = ~/vacuumlabs/.gitconfig
+[init]
+	defaultBranch = master

@@ -1,0 +1,40 @@
+**************************************** EMACS
+
+* build & install
+  ensure 'source' URI in /etc/apt/sources.list
+    deb-src http://deb.debian.org/debian buster main
+  update apt and upgrade
+    > sudo apt update
+    > sudo apt upgrade
+  add dependencies
+    > sudo apt-get build-dep emacs
+  > cd ~/store
+  get the source (either one of the below two)
+  * download stable emacs source tarball and extract
+    > tar xzf emacs-27.1.tar.gz
+    > cd emacs-27.1
+  * OR: try emacs-28 by checking out from source git repo
+        and build/configure the same way
+    > git clone -b master git://git.sv.gnu.org/emacs.git
+    > cd emacs
+  start with creating configure script
+  > ./autogen.sh
+  using lucid instead of gtk
+  > ./configure --with-x-toolkit=lucid
+  > make
+  test emacs then install and cleanup
+  > ./src/emacs
+  > sudo make install
+
+********** PDF generation
+
+* install texlive for latex -> pdf generation
+  > sudo apt install texlive texlive-latex-extra
+
+* install ghostscript and allow imagemagick policy to read PS,PDF,XPS docs
+  to allow conversion to images
+  > sudo apt install ghostscript
+  edit the file /etc/ImageMagick-6/policy.xml and replace the rights for policy
+  elements with 'coder' domain, like:
+  change: <policy domain="coder" rights="none" pattern="PS" />
+  to:     <policy domain="coder" rights="read" pattern="PS" />

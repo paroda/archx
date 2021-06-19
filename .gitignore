@@ -2,3 +2,4 @@
 /.ssh/id_rsa*
 /.wallpapers/*.mp4
 /.bin/clj-kondo
+/.local/share/fonts/.uuid

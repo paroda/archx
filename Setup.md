@@ -355,6 +355,9 @@ $ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/X
 | ~/.dipu/.ssh/id_rsa_aws_psn_prod                      | ~/.ssh/id_rsa_aws_psn_prod                      |
 | ~/.dipu/.ssh/id_rsa_github                            | ~/.ssh/id_rsa_github                            |
 |                                                       |                                                 |
+| ~/.dipu/.aws/config                                   | ~/.aws/config                                   |
+| ~/.dipu/.aws/credentials                              | ~/.aws/credentials                              |
+|                                                       |                                                 |
 
 ## Optional
 

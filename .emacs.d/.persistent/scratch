@@ -66,4 +66,4 @@
 
 (require 'dired-ranger)
 
-(require 'ranger)" (1 . 72) lisp-interaction-mode nil nil])
+(require 'ranger)" (1631 . 72) lisp-interaction-mode nil nil])

@@ -1,5 +1,6 @@
 /.sdk
 /.ssh/id_rsa*
+/.aws/credentials
 /.wallpapers/*.mp4
 /.bin/clj-kondo
 /.local/share/fonts/.uuid

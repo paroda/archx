@@ -32,6 +32,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+vmware-user &
 picom &
 # ~/.bin/feh-random &
 xwinwrap -ov -ni -fs -un -s -st -sp -b -nf -- mplayer -fps 12 -loop 0 -nosound -osdlevel 0 -vo x11 -fixed-vo -noconsolecontrols -wid WID ~/.wallpapers/wallpaper-video-4K-02.mp4 &

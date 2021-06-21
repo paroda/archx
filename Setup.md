@@ -1,19 +1,19 @@
 # Arch Linux
 
-This will guide you on how to create a new VirtualBox guest VM running Arch Linux.
+This will guide you on how to create a new VMWare Player guest VM running Arch Linux.
 
-## Create a VBox VM
+## Create a new Virtual Machine
 
 Create a new virtual machine with following specs:
 
 * CPU: 8
 * RAM: 8 GB
-* HDD: 20 GB [archX.vdi]
+* HDD: 20 GB [archX.vmdk]
 * Display
-  - Video Memory: 256 MB
-  -  Graphics Controller: VMSVGA (or VBoxSVGA if any issue)
+  - Video Memory: 2 GB
+  - Enable 3D acceleration: yes
 * Network: [default NAT]
-  - Port Forward: SSH - 22 --> 22
+
 
 ## Install Arch Linux
 
@@ -37,7 +37,7 @@ $ mount /dev/sda1 /mnt
 Now install base system.
 
 ``` shell
-$ pacstrap /mnt base linux neovim
+$ pacstrap /mnt base linux neovim linux-headers base-devel
 $ genfstab -U /mnt >> /mnt/etc/fstab
 $ arch-chroot /mnt
 
@@ -95,7 +95,7 @@ $ systemctl enable systemd-resolved
 $ nvim /etc/systemd/network/20-wired.network
 ### set the content as
 ###  [Match]
-###  Name=enp0s3
+###  Name=ens33
 ###
 ###  [Network]
 ###  DHCP=yes
@@ -124,29 +124,20 @@ $ amixer sset Headphone unmute
 ### the volume to full: Master, Master Mono, PCM, Surround, Center, LFE
 $ alsamixer
 
-### now test the speakers
+### now test the speakers (if still not working try sometime later)
 $ speaker-test -c 2
 
 ```
 
-## Install VirtualBox Guest Additions drivers
+## Install OpenVMTools
 
-Install pre-requisites
-
-``` shell
-$ pacman -Syu linux-headers base-devel
-
-```
-
-Inject the virtualbox-guest-additions image into the virtual DVD drive.
-Then do the following command
+Install OpenVMTools
 
 ``` shell
-### mount and install
-$ mkdir /tmp/cdrom
-$ mount /dev/cdrom /tmp/cdrom
-$ cd /tmp/cdrom
-$ ./VBoxLinuxAdditions.run
+$ pacman -Syu open-vm-tools
+$ pacman gtkmm3 xf86-input-vmmouse xf86-video-vmware
+$ systemctl enable vmtoolsd
+$ systemctl enable vmware-vmblock-fuse
 
 ```
 
@@ -197,7 +188,9 @@ $ sudo systemctl enable sshd
 $ cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
 ### remove the last few lines starting with twm &
-### and add just: exec i3
+### and add:
+###    vmware-user &
+###    exec i3
 
 ### make it executable
 $ chmod +x ~/.xinitrc
@@ -254,7 +247,7 @@ $ sudo pacman -Syu postgresql
 
 ```
 
-For clj-kondo, Intel MKL and plantuml jar, either get it from the data disk (data.vdi)
+For clj-kondo, Intel MKL and plantuml jar, either get it from the data disk (dipu.vmdk)
 or download from the internet.
 
 The expected disk file size at this point is 5.7 GB.
@@ -292,11 +285,11 @@ $ makepkg -si
 
 Mount the data disks in the following order and accordingly they would appear in */dev*
 
-| Disk file      | /dev/sd*  | Mount path   |
-| :---           | :---      | :---         |
-| dipu.vdi       | /dev/sdb1 | ~/.dipu      |
-| my.vdi         | /dev/sdc1 | ~/my         |
-| vacuumlabs.vdi | /dev/sdd1 | ~/vacuumlabs |
+| Disk file       | /dev/sd*  | Mount path   |
+|:----------------|:----------|:-------------|
+| dipu.vmdk       | /dev/sdb1 | ~/.dipu      |
+| my.vmdk         | /dev/sdc1 | ~/my         |
+| vacuumlabs.vmdk | /dev/sdd1 | ~/vacuumlabs |
 
 Create the folders at mount path and edit */etc/fstab* to sepcify the auto mounts:
 
@@ -368,8 +361,9 @@ $ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/X
 Edit the * ~/.xinitrc * and replace
 
 ``` shell
+vmware-user &
 picom &
-xwinwrap -ov -ni -fs -un -s -st -sp -b -nf -- mplayer -fps 12 -loop 0 -nosound -osdlevel 0 -fixed-vo -noconsolecontrols -wid WID ~/.wallpapers/wallpaper-video-4K-02.mp4 &
+xwinwrap -ov -ni -fs -un -s -st -sp -b -nf -- mplayer -fps 12 -loop 0 -nosound -osdlevel 0 -vo x11 -fixed-vo -noconsolecontrols -wid WID ~/.wallpapers/wallpaper-video-4K-02.mp4 &
 exec i3
 
 ```
@@ -377,6 +371,7 @@ exec i3
 with
 
 ``` shell
+vmware-user &
 picom &
 ~/.bin/feh-random &
 exec i3

@@ -184,7 +184,7 @@ The expected disk file size at this point is 1.9 GB.
 ``` shell
 ### install minimal system
 $ sudo pacman -Syu i3-wm dmenu xorg-server xorg-xinit xorg-xdm openssh ttf-fira-mono
-$ sudo pacman -Syu fakeroot git fish alacritty ranger
+$ sudo pacman -Syu fakeroot git fish alacritty ranger exa
 
 ### enable X11 forwarding in ssh
 $ sudo nvim /etc/ssh/sshd_config
@@ -351,7 +351,8 @@ $ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/X
 | ~/.dipu/.ssh/id_rsa                                   | ~/.ssh/id_rsa                                   |
 | ~/.dipu/.ssh/id_rsa_aws_11onze                        | ~/.ssh/id_rsa_aws_11onze                        |
 | ~/.dipu/.ssh/id_rsa_aws_my                            | ~/.ssh/id_rsa_aws_my                            |
-| ~/.dipu/.ssh/id_rsa_aws_psn                           | ~/.ssh/id_rsa_aws_psn                           |
+| ~/.dipu/.ssh/id_rsa_aws_psn_dev                       | ~/.ssh/id_rsa_aws_psn_dev                       |
+| ~/.dipu/.ssh/id_rsa_aws_psn_stage                     | ~/.ssh/id_rsa_aws_psn_stage                     |
 | ~/.dipu/.ssh/id_rsa_aws_psn_prod                      | ~/.ssh/id_rsa_aws_psn_prod                      |
 | ~/.dipu/.ssh/id_rsa_github                            | ~/.ssh/id_rsa_github                            |
 |                                                       |                                                 |

@@ -143,9 +143,9 @@ Then do the following command
 
 ``` shell
 ### mount and install
-$ mkdir /mnt/cdrom
-$ mount /dev/cdrom /mnt/cdrom
-$ cd /mnt/cdrom
+$ mkdir /tmp/cdrom
+$ mount /dev/cdrom /tmp/cdrom
+$ cd /tmp/cdrom
 $ ./VBoxLinuxAdditions.run
 
 ```
@@ -266,21 +266,21 @@ Install some additional tools.
 
 ``` shell
 $ sudo pacman -Syu feh qiv picom rofi xcursor-flatbed
-$ sudo pacman -Syu perl-anyevent-i3 mplayer
-$ sudo pacman -Syu fd plocate
+$ sudo pacman -Syu perl-anyevent-i3 mplayer i3status-rust
+$ sudo pacman -Syu fd plocate bashtop
 
 # install xwinwrap form AUR - to use a video as wallpaper
-$ cd tmp
+$ cd /tmp
 $ git clone https://aur.archlinux.org/xwinwrap-git.git
-$ cd xwinwrap
-$ sudo makepkg -si
+$ cd xwinwrap-git
+$ makepkg -si
 
 ```
 
 Install Google Chrome web browser
 
 ``` shell
-$ mkdir ~/store; pushd ~/store
+$ cd /tmp
 $ git clone https://aur.archlinux.org/google-chrome.git
 $ cd google-chrome
 $ makepkg -si

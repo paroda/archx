@@ -166,6 +166,7 @@ Setup user
 $ pacman -Syu sudo
 
 ### uncomment %wheel ALL=(ALL) ALL in sudo config
+### also add: %wheel ALL=(ALL) NOPASSWD: /usr/bin/halt, /usr/bin/reboot, /usr/bin/poweroff
 $ EDITOR=nvim visudo
 
 ### create user dipu

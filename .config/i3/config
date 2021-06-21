@@ -219,8 +219,8 @@ bar {
 set $mode_system System (e) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
     bindsym e exit, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym s exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym r exec --no-startup-id sudo reboot, mode "default"
+    bindsym s exec --no-startup-id sudo poweroff, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

@@ -34,6 +34,6 @@ fi
 
 vmware-user &
 picom &
-# ~/.bin/feh-random &
-xwinwrap -ov -ni -fs -un -s -st -sp -b -nf -- mplayer -fps 12 -loop 0 -nosound -osdlevel 0 -vo x11 -fixed-vo -noconsolecontrols -wid WID ~/.wallpapers/wallpaper-video-4K-02.mp4 &
+~/.bin/wp-photo &
+#~/.bin/wp-video &
 exec i3

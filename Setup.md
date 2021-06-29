@@ -300,6 +300,16 @@ Create the folders at mount path and edit */etc/fstab* to sepcify the auto mount
 
 ```
 
+If you face issue with ordering of the disks, use the **UUID** of the disks instead of *device file*.
+You can find the correct UUID of the disks using the command `lsblk -o NAME,PATH,LABEL,UUID`.
+
+``` shell
+UUID=f1fe50e6-2102-40f4-89d2-fdbc9014857b       /home/dipu/.dipu           ext4       rw,relatime       0 1
+UUID=ba0e28be-366a-4f93-ae3e-4d0fa615da39       /home/dipu/my              ext4       rw,relatime       0 1
+UUID=bd2246a6-5010-4353-bf6e-9da5a8c24f08       /home/dipu/vacuumlabs      ext4       rw,relatime       0 1
+
+```
+
 ### Copy system level config file
 
 Use the custom xdm-archlinux config, which will set the wallpaper on login screen.
@@ -349,31 +359,22 @@ $ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/X
 | ~/.dipu/.ssh/id_rsa_aws_psn_stage                     | ~/.ssh/id_rsa_aws_psn_stage                     |
 | ~/.dipu/.ssh/id_rsa_aws_psn_prod                      | ~/.ssh/id_rsa_aws_psn_prod                      |
 | ~/.dipu/.ssh/id_rsa_github                            | ~/.ssh/id_rsa_github                            |
-|                                                       |                                                 |
-| ~/.dipu/.aws/config                                   | ~/.aws/config                                   |
-| ~/.dipu/.aws/credentials                              | ~/.aws/credentials                              |
-|                                                       |                                                 |
+
+### Copy the files:
+
+Since we are using aws via docker, symlink would be invalid. Hence just copy.
+
+| Source file              | Target             |
+|:-------------------------|:-------------------|
+| ~/.dipu/.aws/config      | ~/.aws/config      |
+| ~/.dipu/.aws/credentials | ~/.aws/credentials |
+|                          |                    |
 
 ## Optional
 
-### Use static wallpaper instead of video
-
-Edit the * ~/.xinitrc * and replace
+To use the video wallpaper use the command
 
 ``` shell
-vmware-user &
-picom &
-xwinwrap -ov -ni -fs -un -s -st -sp -b -nf -- mplayer -fps 12 -loop 0 -nosound -osdlevel 0 -vo x11 -fixed-vo -noconsolecontrols -wid WID ~/.wallpapers/wallpaper-video-4K-02.mp4 &
-exec i3
-
-```
-
-with
-
-``` shell
-vmware-user &
-picom &
-~/.bin/feh-random &
-exec i3
+$ wp-video
 
 ```

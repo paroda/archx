@@ -13,21 +13,21 @@ end
 function my_git_prompt --description 'short status of git vcs'
     # branch with clean/staged/dirty
 
-    set -l root_path (git rev-parse --show-toplevel ^/dev/null)
+    set -l root_path (git rev-parse --show-toplevel 2>/dev/null)
     set -l root '~'
     test "$root_path" != $HOME
     and set root (string replace -r '(.*/)*' '' $root_path)
     set -l git_root (set_color 996)" "$root
 
-    set -l br (git symbolic-ref --short HEAD ^/dev/null;
-    or git show-ref --head -s --abbrev | head -n1 ^/dev/null)
+    set -l br (git symbolic-ref --short HEAD 2>/dev/null;
+    or git show-ref --head -s --abbrev | head -n1 2>/dev/null)
     set br (string replace -ar '(\w)[^/]+/' '$1/' $br)
     set -l branch (set_color 66c)" $br"
 
-    test (git status -bs ^/dev/null | egrep '^[^ ?]' | wc -l) -gt 1
+    test (git status -bs 2>/dev/null | egrep '^[^ ?]' | wc -l) -gt 1
     and set -l has_staged
 
-    test (git status -bs ^/dev/null | egrep '^.\S' | wc -l) -gt 1
+    test (git status -bs 2>/dev/null | egrep '^.\S' | wc -l) -gt 1
     and set -l has_dirty
 
     if set -q has_dirty
@@ -41,11 +41,11 @@ function my_git_prompt --description 'short status of git vcs'
     end
 
     set -l commits ''
-    git rev-parse --abbrev-ref '@{upstream}' >/dev/null ^&1; and set -l has_upstream
+    git rev-parse --abbrev-ref '@{upstream}' &>/dev/null; and set -l has_upstream
     if set -q has_upstream
-        set -l commit_counts (git rev-list --left-right --count 'HEAD...@{upstream}' ^/dev/null)
-        set -l commits_to_push (echo $commit_counts | cut -f 1 ^/dev/null)
-        set -l commits_to_pull (echo $commit_counts | cut -f 2 ^/dev/null)
+        set -l commit_counts (git rev-list --left-right --count 'HEAD...@{upstream}' 2>/dev/null)
+        set -l commits_to_push (echo $commit_counts | cut -f 1 2>/dev/null)
+        set -l commits_to_pull (echo $commit_counts | cut -f 2 2>/dev/null)
 
         if [ $commits_to_push != 0 ]
             set commits "$commits"(set_color 3c3) ""$commits_to_push
@@ -71,13 +71,13 @@ function my_git_prompt --description 'short status of git vcs'
 end
 
 function my_vcs_prompt --description 'short status of git vcs if git'
-    set -l is_git_repository (git rev-parse --is-inside-work-tree ^/dev/null)
+    set -l is_git_repository (git rev-parse --is-inside-work-tree 2>/dev/null)
     if test -n "$is_git_repository"
         my_git_prompt
     else
         set -l repo (__fish_vcs_prompt)
         test "x$repo" = "x"
-        or echo -n -s (set_color -o 888)" "(set_color 66c)$repo
+        or echo -n -s (set_color -o 888)""(set_color 66c)$repo" "
         echo -n -s (set_color $fish_color_cwd)" "(my_cur_dir)
     end
 end

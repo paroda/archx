@@ -44,6 +44,7 @@ exec --no-startup-id "emacs"
 exec --no-startup-id "google-chrome-stable"
 exec --no-startup-id "alacritty -e fish"
 exec --no-startup-id "alacritty -e fish"
+exec --no-startup-id "conky"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

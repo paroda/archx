@@ -259,7 +259,7 @@ Now the primary setup is ready 😎
 Install some additional tools.
 
 ``` shell
-$ sudo pacman -Syu feh qiv picom rofi xcursor-flatbed
+$ sudo pacman -Syu feh qiv picom rofi xcursor-flatbed conky
 $ sudo pacman -Syu perl-anyevent-i3 mplayer i3status-rust
 $ sudo pacman -Syu fd plocate bashtop
 
@@ -346,6 +346,7 @@ $ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/X
 | ~/.dipu/.config/i3status-rust/config.toml             | ~/.config/i3status-rust/config.toml             |
 | ~/.dipu/.config/nvim/init.vim                         | ~/.config/nvim/init.vim                         |
 | ~/.dipu/.config/picom/picom.conf                      | ~/.config/picom/picom.conf                      |
+| ~/.dipu/.config/conky/conky.conf                      | ~/.config/conky/conky.conf                      |
 |                                                       |                                                 |
 | ~/.dipu/.emacs.d/.persistent                          | ~/.emacs.d/.persistent                          |
 | ~/.dipu/.lein/profiles.clj                            | ~/.lein/profiles.clj                            |

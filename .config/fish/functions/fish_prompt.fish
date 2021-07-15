@@ -6,7 +6,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l lg 3399ff
     echo -n -s (set_color $bg)""
     # echo -n -s (set_color $bg)""
-    echo -n -s (set_color -o -b $bg $lg)"  "
+    echo -n -s (set_color -b $bg $lg)"  "
     # echo -n -s (set_color -b normal $bg)" "
     echo -n -s (set_color -b normal $bg)""
     # echo -n -s (set_color -b normal $bg)""

@@ -289,14 +289,18 @@ Mount the data disks in the following order and accordingly they would appear in
 |:----------------|:----------|:-------------|
 | dipu.vmdk       | /dev/sdb1 | ~/.dipu      |
 | my.vmdk         | /dev/sdc1 | ~/my         |
-| vacuumlabs.vmdk | /dev/sdd1 | ~/vacuumlabs |
 
-Create the folders at mount path and edit */etc/fstab* to sepcify the auto mounts:
+NOTE: The disk *dipu.vmdk* contains same thing as this repository. You can just create a new
+virtual disk and copy the contents of this repo to it. The disk *my.vmdk* is an optional disk
+to store personal files. Just create a new one, if you do not have one already.
+
+Create the folders at mount path and edit */etc/fstab* to sepcify the auto mounts. However, some
+virtual machines do not maintain the order of disk files in `/dev`. A more reliable way is to use
+the `UUID` as shown next.
 
 ``` shell
 /dev/sdb1      /home/dipu/.dipu           ext4       rw,relatime       0 1
 /dev/sdc1      /home/dipu/my              ext4       rw,relatime       0 1
-/dev/sdd1      /home/dipu/vacuumlabs      ext4       rw,relatime       0 1
 
 ```
 
@@ -306,9 +310,44 @@ You can find the correct UUID of the disks using the command `lsblk -o NAME,PATH
 ``` shell
 UUID=f1fe50e6-2102-40f4-89d2-fdbc9014857b       /home/dipu/.dipu           ext4       rw,relatime       0 1
 UUID=ba0e28be-366a-4f93-ae3e-4d0fa615da39       /home/dipu/my              ext4       rw,relatime       0 1
-UUID=bd2246a6-5010-4353-bf6e-9da5a8c24f08       /home/dipu/vacuumlabs      ext4       rw,relatime       0 1
 
 ```
+
+## Add encrypted data disks
+
+We are using **LUKS on partition** for encrypting the partition in the virtual hard disk with a passphrase.
+
+### How to create a new encrypted disk
+
+Create a regular virtual hard disk and add to your machine, and then locate it in the `/dev` folder. Let's
+say it is mounted at `/dev/sdd` for example. Then create the encrypted partition as follows:
+
+``` shell
+# Create the partition on /dev/sdd
+
+$ sudo fdisk /dev/sdd
+
+# Now you should have the newly created partition at /dev/sdd1
+
+$ sudo cryptsetup -y -v luksFormat /dev/sdd1
+
+# It will ask for a passphrase. Provide one and remember it, since you would need it later to mount it
+
+$ cryptsetup open /dev/sdd1 cryptroot
+$ mkfs.ext4 /dev/mapper/cryptroot
+$ cryptsetup close cryptroot
+
+```
+
+### Mount encrypted disk partition
+
+Note the **UUID** of the partition. To list out details of all disks added to the virtual machine,
+you can use the command `lsblk -o NAME,PATH,LABEL,UUID,SIZE,TYPE,MOUNTPOINTS`.
+
+For convenience, there is a script file `.bin/mount-crypts`. Edit it to replace two parameters `vol_name` and
+`vol_uuid` as per your need. Then, you can call it anytime after a machine restart to mount that
+encrypted partition at `~/$vol_name`. It'll ask for the passphrase, provide the one you set while
+creating the encrypted disk.
 
 ### Copy system level config file
 

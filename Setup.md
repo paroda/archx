@@ -248,7 +248,11 @@ $ sudo pacman -Syu postgresql
 ```
 
 For clj-kondo, Intel MKL and plantuml jar, either get it from the data disk (dipu.vmdk)
-or download from the internet.
+or download from the internet. These being large binary files, not included in the repo.
+
+Copy the clj-kondo binary to `~/.bin/clj-kondo` and set it executable with `chmod +x ~/.bin/clj-kondo`.
+Copy the plantuml jar file to `~/.sdk/plantuml.jar`.
+Copy the MKL lib folder to `~/.sdk/mkl/lib` folder.
 
 The expected disk file size at this point is 5.7 GB.
 

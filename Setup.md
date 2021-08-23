@@ -135,7 +135,7 @@ Install OpenVMTools
 
 ``` shell
 $ pacman -Syu open-vm-tools
-$ pacman gtkmm3 xf86-input-vmmouse xf86-video-vmware
+$ pacman -Syu gtkmm3 xf86-input-vmmouse xf86-video-vmware
 $ systemctl enable vmtoolsd
 $ systemctl enable vmware-vmblock-fuse
 

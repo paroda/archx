@@ -40,8 +40,8 @@ alias = "my"
 info_type = "used"
 format = "{icon} {alias}: {used}/{total}"
 unit = "GB"
-warning = 50.0
-alert = 30.0
+warning = 80.0
+alert = 50.0
 
 [[block]]
 block = "disk_space"
@@ -50,8 +50,8 @@ alias = "vlab"
 info_type = "used"
 format = "{icon} {alias}: {used}/{total}"
 unit = "GB"
-warning = 50.0
-alert = 30.0
+warning = 80.0
+alert = 50.0
 
 [[block]]
 block = "memory"

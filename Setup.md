@@ -176,7 +176,7 @@ The expected disk file size at this point is 1.9 GB.
 ``` shell
 ### install minimal system
 $ sudo pacman -Syu i3-wm dmenu xorg-server xorg-xinit xorg-xdm openssh ttf-fira-mono
-$ sudo pacman -Syu fakeroot git fish alacritty ranger exa
+$ sudo pacman -Syu xorg-xrandr fakeroot git fish alacritty ranger exa
 
 ### enable X11 forwarding in ssh
 $ sudo nvim /etc/ssh/sshd_config
@@ -356,9 +356,12 @@ creating the encrypted disk.
 ### Copy system level config file
 
 Use the custom xdm-archlinux config, which will set the wallpaper on login screen.
+NOTE: It includes an `xrandr` command to set initial screen resolution to `1920x1080 @ 60Hz`. However, on
+resizing the window or fullscreen, the system will auto resize the resolution.
 
 ``` shell
 $ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/Xsetup
+$ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xresources /etc/X11/xdm/archlinux/Xresources
 
 ```
 
@@ -397,12 +400,9 @@ $ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/X
 |                                                       |                                                 |
 | ~/.dipu/.ssh/config                                   | ~/.ssh/config                                   |
 | ~/.dipu/.ssh/id_rsa                                   | ~/.ssh/id_rsa                                   |
-| ~/.dipu/.ssh/id_rsa_aws_11onze                        | ~/.ssh/id_rsa_aws_11onze                        |
-| ~/.dipu/.ssh/id_rsa_aws_my                            | ~/.ssh/id_rsa_aws_my                            |
-| ~/.dipu/.ssh/id_rsa_aws_psn_dev                       | ~/.ssh/id_rsa_aws_psn_dev                       |
-| ~/.dipu/.ssh/id_rsa_aws_psn_stage                     | ~/.ssh/id_rsa_aws_psn_stage                     |
-| ~/.dipu/.ssh/id_rsa_aws_psn_prod                      | ~/.ssh/id_rsa_aws_psn_prod                      |
 | ~/.dipu/.ssh/id_rsa_github                            | ~/.ssh/id_rsa_github                            |
+| ~/.dipu/.ssh/id_rsa_aws_my                            | ~/.ssh/id_rsa_aws_my                            |
+| ~/.dipu/.ssh/id_rsa_{others}                          | ~/.ssh/id_rsa_{others}                          |
 
 ### Copy the files:
 

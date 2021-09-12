@@ -109,7 +109,7 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
         vterm_printf "51;Evterm-clear-scrollback";
         tput clear;
     }
-    PS1='⟹ \[$(vterm_prompt_end)\]'
+    PS1='⟹  \[$(vterm_prompt_end)\]'
 
     function vterm_cmd() {
         local vterm_elisp

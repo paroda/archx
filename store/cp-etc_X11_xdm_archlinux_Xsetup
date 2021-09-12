@@ -1,10 +1,14 @@
 #!/bin/sh
 
+xrandr --output Virtual1 --mode 1920x1080 --rate 60
+
 ## the root window should have this color
 xsetroot -solid "#223377" -cursor_name left_ptr
 
 ## these are all optional
-/etc/X11/xdm/archlinux/buttons -geometry -0-0 &
-xclock -geometry +0-0 &
+/etc/X11/xdm/archlinux/buttons -geometry -0-0 &      # buttons on right-bottom
+xclock -geometry +0-0 &                              # clock on left-bottom
+
 # xconsole -daemon -geometry 640x200-0+0
+
 /usr/bin/qiv -zr /home/dipu/.dipu/.wallpapers/xdm

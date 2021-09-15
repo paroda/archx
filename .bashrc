@@ -128,3 +128,4 @@ fi # end of EMACS vterm config
 
 alias ec='emacsclient -n'
 
+alias hostname='echo archX'

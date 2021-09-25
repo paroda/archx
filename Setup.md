@@ -8,11 +8,11 @@ Create a new virtual machine with following specs:
 
 * CPU: 8
 * RAM: 8 GB
-* HDD: 20 GB [archX.vmdk]
+* HDD: 20 GB *archX.vmdk*
 * Display
-  - Video Memory: 2 GB
-  - Enable 3D acceleration: yes
-* Network: [default NAT]
+  * Video Memory: 2 GB
+  * Enable 3D acceleration: yes
+* Network: *default NAT*
 
 
 ## Install Arch Linux
@@ -24,59 +24,59 @@ The virtual machine will boot up and show the root shell.
 
 Now do the following actions.
 
-``` shell
-$ timedatectl set-ntp true
+``` sh
+timedatectl set-ntp true
 
-### create and mount one partition (primary, whole disk, boot flag on, type Linux)
-$ fdisk /dev/sda
-$ mkfs.ext4 /dev/sda1
-$ mount /dev/sda1 /mnt
+# create and mount one partition (primary, whole disk, boot flag on, type Linux)
+fdisk /dev/sda
+mkfs.ext4 /dev/sda1
+mount /dev/sda1 /mnt
 
 ```
 
 Now install base system.
 
-``` shell
-$ pacstrap /mnt base linux neovim linux-headers base-devel
-$ genfstab -U /mnt >> /mnt/etc/fstab
-$ arch-chroot /mnt
+``` sh
+pacstrap /mnt base linux neovim linux-headers base-devel
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
 
-$ ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-$ hwclock --systohc
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+hwclock --systohc
 
-### edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8
-$ nvim /etc/locale.gen
+# edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8
+nvim /etc/locale.gen
 
-### generate locales
-$ locale-gen
+# generate locales
+locale-gen
 
-### create locale.conf and set LANG
-$ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+# create locale.conf and set LANG
+echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 
-### create hostname
-$ echo 'archX' > /etc/hostname
+# create hostname
+echo 'archX' > /etc/hostname
 
-### add to hosts
-$ echo "127.0.0.1      localhost" >> /etc/hosts
-$ echo "::1            localhost" >> /etc/hosts
-$ echo "127.0.0.1      archX" >> /etc/hosts
+# add to hosts
+echo "127.0.0.1      localhost" >> /etc/hosts
+echo "::1            localhost" >> /etc/hosts
+echo "127.0.0.1      archX" >> /etc/hosts
 
-### set root passwd
-$ passwd
+# set root passwd
+passwd
 
-### install GRUB bootloader
-$ pacman -Syu grub
-$ grub-install --target=i386-pc /dev/sda
-$ grub-mkconfig -o /boot/grub/grub.cfg
+# install GRUB bootloader
+pacman -Syu grub
+grub-install --target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
 
-### install microcode (AMD cpu)
-$ pacman -Syu amd-ucode
-$ grub-mkconfig -o /boot/grub/grub.cfg
+# install microcode (AMD cpu)
+pacman -Syu amd-ucode
+grub-mkconfig -o /boot/grub/grub.cfg
 
-### exit, unmount then reboot
-$ exit
-$ umount -R /mnt
-$ reboot
+# exit, unmount then reboot
+exit
+umount -R /mnt
+reboot
 
 ```
 
@@ -87,20 +87,20 @@ The expected disk file size at this point is 1.1 GB.
 
 Check network and fix to DHCP if needed.
 
-``` shell
-### enable the daemons for network manager
-$ systemctl enable systemd-networkd
-$ systemctl enable systemd-resolved
+``` sh
+# enable the daemons for network manager
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
 
-$ nvim /etc/systemd/network/20-wired.network
-### set the content as
-###  [Match]
-###  Name=ens33
-###
-###  [Network]
-###  DHCP=yes
+nvim /etc/systemd/network/20-wired.network
+# set the content as
+#  [Match]
+#  Name=ens33
+#
+#  [Network]
+#  DHCP=yes
 
-$ reboot
+reboot
 
 ```
 
@@ -111,21 +111,21 @@ The network should up by now.
 The audio works mostly out of box, though it would be initially muted.
 You just need to unmute.
 
-``` shell
-### install the utilities
-$ pacman -Syu alsa-utils
+``` sh
+# install the utilities
+pacman -Syu alsa-utils
 
-### unmute using amixer
-$ amixer sset Master unmute
-$ amixer sset Speaker unmute
-$ amixer sset Headphone unmute
+# unmute using amixer
+amixer sset Master unmute
+amixer sset Speaker unmute
+amixer sset Headphone unmute
 
-### unmute using alsamixer console, here just raise
-### the volume to full: Master, Master Mono, PCM, Surround, Center, LFE
-$ alsamixer
+# unmute using alsamixer console, here just raise
+# the volume to full: Master, Master Mono, PCM, Surround, Center, LFE
+alsamixer
 
-### now test the speakers (if still not working try sometime later)
-$ speaker-test -c 2
+# now test the speakers (if still not working try sometime later)
+speaker-test -c 2
 
 ```
 
@@ -133,18 +133,18 @@ $ speaker-test -c 2
 
 Install OpenVMTools
 
-``` shell
-$ pacman -Syu open-vm-tools
-$ pacman -Syu gtkmm3 xf86-input-vmmouse xf86-video-vmware
-$ systemctl enable vmtoolsd
-$ systemctl enable vmware-vmblock-fuse
+``` sh
+pacman -Syu open-vm-tools
+pacman -Syu gtkmm3 xf86-input-vmmouse xf86-video-vmware
+systemctl enable vmtoolsd
+systemctl enable vmware-vmblock-fuse
 
 ```
 
 ## Setup auto sync of time
 
-``` shell
-$ timedatectl set-ntp true
+``` sh
+timedatectl set-ntp true
 
 ```
 
@@ -152,19 +152,19 @@ $ timedatectl set-ntp true
 
 Setup user
 
-``` shell
-### install sudo
-$ pacman -Syu sudo
+``` sh
+# install sudo
+pacman -Syu sudo
 
-### uncomment %wheel ALL=(ALL) ALL in sudo config
-### also add: %wheel ALL=(ALL) NOPASSWD: /usr/bin/halt, /usr/bin/reboot, /usr/bin/poweroff
-$ EDITOR=nvim visudo
+# uncomment %wheel ALL=(ALL) ALL in sudo config
+# also add: %wheel ALL=(ALL) NOPASSWD: /usr/bin/halt, /usr/bin/reboot, /usr/bin/poweroff
+EDITOR=nvim visudo
 
-### create user dipu
-$ useradd -mG wheel dipu
-$ passwd dipu
+# create user dipu
+useradd -mG wheel dipu
+passwd dipu
 
-$ reboot
+reboot
 
 ```
 
@@ -173,27 +173,27 @@ The expected disk file size at this point is 1.9 GB.
 
 ## Install basic components
 
-``` shell
-### install minimal system
-$ sudo pacman -Syu i3-wm dmenu xorg-server xorg-xinit xorg-xdm openssh ttf-fira-mono
-$ sudo pacman -Syu xorg-xrandr fakeroot git fish alacritty ranger exa
+``` sh
+# install minimal system
+sudo pacman -Syu i3-wm dmenu xorg-server xorg-xinit xorg-xdm openssh ttf-fira-mono
+sudo pacman -Syu xorg-xrandr fakeroot git fish alacritty ranger exa
 
-### enable X11 forwarding in ssh
-$ sudo nvim /etc/ssh/sshd_config
+# enable X11 forwarding in ssh
+sudo nvim /etc/ssh/sshd_config
 
-### enable ssh service
-$ sudo systemctl enable sshd
+# enable ssh service
+sudo systemctl enable sshd
 
-### create ~/.xinitrc
-$ cp /etc/X11/xinit/xinitrc ~/.xinitrc
+# create ~/.xinitrc
+cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
-### remove the last few lines starting with twm &
-### and add:
-###    vmware-user &
-###    exec i3
+# remove the last few lines starting with twm &
+# and add:
+#    vmware-user &
+#    exec i3
 
-### make it executable
-$ chmod +x ~/.xinitrc
+# make it executable
+chmod +x ~/.xinitrc
 
 ```
 
@@ -202,10 +202,10 @@ eliminate the red errors in the bottom bar.
 
 Now enable the login screen.
 
-``` shell
-$ sudo pacman -Syu xdm-archlinux
-$ sudo systemctl enable xdm-archlinux
-$ reboot
+``` sh
+sudo pacman -Syu xdm-archlinux
+sudo systemctl enable xdm-archlinux
+reboot
 
 ```
 
@@ -220,30 +220,30 @@ Target tools
 * clojure
 * nodejs
 
-``` shell
-### clojure, node
-$ sudo pacman -Syu rlwrap unzip clojure leiningen jdk11-openjdk nodejs npm
+``` sh
+# clojure, node
+sudo pacman -Syu rlwrap unzip clojure leiningen jdk11-openjdk nodejs npm
 
-### clone the clojure config repo
-$ git clone git@github.com:paroda/clojure-deps-edn.git ~/.clojure
+# clone the clojure config repo
+git clone git@github.com:paroda/clojure-deps-edn.git ~/.clojure
 
-### emacs
-$ sudo pacman -Syu ripgrep the_silver_searcher ditaa graphviz gnuplot pandoc emacs
+# emacs
+sudo pacman -Syu ripgrep the_silver_searcher ditaa graphviz gnuplot pandoc emacs
 
-### install vterm support
-$ sudo pacman -Syu cmake libvterm
+# install vterm support
+sudo pacman -Syu cmake libvterm
 
-### clone the config repo
-$ git clone git@github.com:paroda/prelude.git ~/.emacs.d
-$ pushd ~/.emacs.d ; git checkout gui ; popd
+# clone the config repo
+git clone git@github.com:paroda/prelude.git ~/.emacs.d
+pushd ~/.emacs.d ; git checkout gui ; popd
 
-### install docker
-$ sudo pacman -Syu docker docker-compose
-$ sudo usermod -aG docker dipu
-$ sudo systemctl enable docker
+# install docker
+sudo pacman -Syu docker docker-compose
+sudo usermod -aG docker dipu
+sudo systemctl enable docker
 
-### install postgres sql client
-$ sudo pacman -Syu postgresql
+# install postgres sql client
+sudo pacman -Syu postgresql
 
 ```
 
@@ -262,26 +262,26 @@ Now the primary setup is ready 😎
 
 Install some additional tools.
 
-``` shell
-$ sudo pacman -Syu feh qiv picom rofi xcursor-flatbed conky
-$ sudo pacman -Syu perl-anyevent-i3 mplayer i3status-rust
-$ sudo pacman -Syu fd plocate bashtop
+``` sh
+sudo pacman -Syu feh qiv picom rofi xcursor-flatbed conky
+sudo pacman -Syu perl-anyevent-i3 mplayer i3status-rust
+sudo pacman -Syu fd plocate bashtop
 
 # install xwinwrap form AUR - to use a video as wallpaper
-$ cd /tmp
-$ git clone https://aur.archlinux.org/xwinwrap-git.git
-$ cd xwinwrap-git
-$ makepkg -si
+cd /tmp
+git clone https://aur.archlinux.org/xwinwrap-git.git
+cd xwinwrap-git
+makepkg -si
 
 ```
 
 Install Google Chrome web browser
 
-``` shell
-$ cd /tmp
-$ git clone https://aur.archlinux.org/google-chrome.git
-$ cd google-chrome
-$ makepkg -si
+``` sh
+cd /tmp
+git clone https://aur.archlinux.org/google-chrome.git
+cd google-chrome
+makepkg -si
 
 ```
 
@@ -302,7 +302,7 @@ Create the folders at mount path and edit */etc/fstab* to sepcify the auto mount
 virtual machines do not maintain the order of disk files in `/dev`. A more reliable way is to use
 the `UUID` as shown next.
 
-``` shell
+``` sh
 /dev/sdb1      /home/dipu/.dipu           ext4       rw,relatime       0 1
 /dev/sdc1      /home/dipu/my              ext4       rw,relatime       0 1
 
@@ -311,7 +311,7 @@ the `UUID` as shown next.
 If you face issue with ordering of the disks, use the **UUID** of the disks instead of *device file*.
 You can find the correct UUID of the disks using the command `lsblk -o NAME,PATH,LABEL,UUID`.
 
-``` shell
+``` sh
 UUID=f1fe50e6-2102-40f4-89d2-fdbc9014857b       /home/dipu/.dipu           ext4       rw,relatime       0 1
 UUID=ba0e28be-366a-4f93-ae3e-4d0fa615da39       /home/dipu/my              ext4       rw,relatime       0 1
 
@@ -326,20 +326,20 @@ We are using **LUKS on partition** for encrypting the partition in the virtual h
 Create a regular virtual hard disk and add to your machine, and then locate it in the `/dev` folder. Let's
 say it is mounted at `/dev/sdd` for example. Then create the encrypted partition as follows:
 
-``` shell
+``` sh
 # Create the partition on /dev/sdd
 
-$ sudo fdisk /dev/sdd
+sudo fdisk /dev/sdd
 
 # Now you should have the newly created partition at /dev/sdd1
 
-$ sudo cryptsetup -y -v luksFormat /dev/sdd1
+sudo cryptsetup -y -v luksFormat /dev/sdd1
 
 # It will ask for a passphrase. Provide one and remember it, since you would need it later to mount it
 
-$ cryptsetup open /dev/sdd1 cryptroot
-$ mkfs.ext4 /dev/mapper/cryptroot
-$ cryptsetup close cryptroot
+cryptsetup open /dev/sdd1 cryptroot
+mkfs.ext4 /dev/mapper/cryptroot
+cryptsetup close cryptroot
 
 ```
 
@@ -359,9 +359,9 @@ Use the custom xdm-archlinux config, which will set the wallpaper on login scree
 NOTE: It includes an `xrandr` command to set initial screen resolution to `1920x1080 @ 60Hz`. However, on
 resizing the window or fullscreen, the system will auto resize the resolution.
 
-``` shell
-$ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/Xsetup
-$ sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xresources /etc/X11/xdm/archlinux/Xresources
+``` sh
+sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/Xsetup
+sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xresources /etc/X11/xdm/archlinux/Xresources
 
 ```
 
@@ -412,13 +412,12 @@ Since we are using aws via docker, symlink would be invalid. Hence just copy.
 |:-------------------------|:-------------------|
 | ~/.dipu/.aws/config      | ~/.aws/config      |
 | ~/.dipu/.aws/credentials | ~/.aws/credentials |
-|                          |                    |
 
 ## Optional
 
 To use the video wallpaper use the command
 
-``` shell
-$ wp-video
+``` sh
+wp-video
 
 ```

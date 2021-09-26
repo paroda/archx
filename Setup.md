@@ -81,7 +81,7 @@ reboot
 ```
 
 The base operating system is now installed.
-The expected disk file size at this point is 1.1 GB.
+The expected disk file size at this point is 1.8 GB.
 
 ## Configure Network
 
@@ -106,6 +106,13 @@ reboot
 
 The network should up by now.
 
+## Update pacman keyring
+
+``` sh
+pacman-key --populate archlinux
+
+```
+
 ## Enable Audio
 
 The audio works mostly out of box, though it would be initially muted.
@@ -117,14 +124,11 @@ pacman -Syu alsa-utils
 
 # unmute using amixer
 amixer sset Master unmute
-amixer sset Speaker unmute
-amixer sset Headphone unmute
 
-# unmute using alsamixer console, here just raise
-# the volume to full: Master, Master Mono, PCM, Surround, Center, LFE
+# unmute using alsamixer console, here just raise the volume to full: Master, PCM, Video
 alsamixer
 
-# now test the speakers (if still not working try sometime later)
+# now test the speakers
 speaker-test -c 2
 
 ```
@@ -169,7 +173,7 @@ reboot
 ```
 
 The new user *dipu* is now ready for login.
-The expected disk file size at this point is 1.9 GB.
+The expected disk file size at this point is 2.4 GB.
 
 ## Install basic components
 
@@ -210,7 +214,7 @@ reboot
 ```
 
 Now we are ready with a minimal system with simple graphical login screen.
-The expected disk file size at this point is 2.7 GB.
+The expected disk file size at this point is 2.6 GB.
 
 ## Install primary tools for work
 
@@ -224,6 +228,15 @@ Target tools
 # clojure, node
 sudo pacman -Syu rlwrap unzip clojure leiningen jdk11-openjdk nodejs npm
 
+# copy your personal Github key file to ~/.ssh/id_rsa_github
+# create a basic ssh config file ~/.ssh/config to use the above key file
+nvim ~/.ssh/config
+# ~/.ssh/config - set the content
+#     Host github.com
+#       Hostname  github.com
+#       IdentityFile ~/.ssh/id_rsa_github
+#       User git
+
 # clone the clojure config repo
 git clone git@github.com:paroda/clojure-deps-edn.git ~/.clojure
 
@@ -235,7 +248,7 @@ sudo pacman -Syu cmake libvterm
 
 # clone the config repo
 git clone git@github.com:paroda/prelude.git ~/.emacs.d
-pushd ~/.emacs.d ; git checkout gui ; popd
+pushd ~/.emacs.d ; git checkout archx ; popd
 
 # install docker
 sudo pacman -Syu docker docker-compose
@@ -247,14 +260,7 @@ sudo pacman -Syu postgresql
 
 ```
 
-For clj-kondo, Intel MKL and plantuml jar, either get it from the data disk (dipu.vmdk)
-or download from the internet. These being large binary files, not included in the repo.
-
-Copy the clj-kondo binary to `~/.bin/clj-kondo` and set it executable with `chmod +x ~/.bin/clj-kondo`.
-Copy the plantuml jar file to `~/.sdk/plantuml.jar`.
-Copy the MKL lib folder to `~/.sdk/mkl/lib` folder.
-
-The expected disk file size at this point is 5.7 GB.
+The expected disk file size at this point is 4.5 GB.
 
 Now the primary setup is ready 😎
 
@@ -317,53 +323,7 @@ UUID=ba0e28be-366a-4f93-ae3e-4d0fa615da39       /home/dipu/my              ext4 
 
 ```
 
-## Add encrypted data disks
-
-We are using **LUKS on partition** for encrypting the partition in the virtual hard disk with a passphrase.
-
-### How to create a new encrypted disk
-
-Create a regular virtual hard disk and add to your machine, and then locate it in the `/dev` folder. Let's
-say it is mounted at `/dev/sdd` for example. Then create the encrypted partition as follows:
-
-``` sh
-# Create the partition on /dev/sdd
-
-sudo fdisk /dev/sdd
-
-# Now you should have the newly created partition at /dev/sdd1
-
-sudo cryptsetup -y -v luksFormat /dev/sdd1
-
-# It will ask for a passphrase. Provide one and remember it, since you would need it later to mount it
-
-cryptsetup open /dev/sdd1 cryptroot
-mkfs.ext4 /dev/mapper/cryptroot
-cryptsetup close cryptroot
-
-```
-
-### Mount encrypted disk partition
-
-Note the **UUID** of the partition. To list out details of all disks added to the virtual machine,
-you can use the command `lsblk -o NAME,PATH,LABEL,UUID,SIZE,TYPE,MOUNTPOINTS`.
-
-For convenience, there is a script file `.bin/mount-crypts`. Edit it to replace two parameters `vol_name` and
-`vol_uuid` as per your need. Then, you can call it anytime after a machine restart to mount that
-encrypted partition at `~/$vol_name`. It'll ask for the passphrase, provide the one you set while
-creating the encrypted disk.
-
-### Copy system level config file
-
-Use the custom xdm-archlinux config, which will set the wallpaper on login screen.
-NOTE: It includes an `xrandr` command to set initial screen resolution to `1920x1080 @ 60Hz`. However, on
-resizing the window or fullscreen, the system will auto resize the resolution.
-
-``` sh
-sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/Xsetup
-sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xresources /etc/X11/xdm/archlinux/Xresources
-
-```
+Now reboot.
 
 ### Create the symlinks as follows:
 
@@ -413,11 +373,87 @@ Since we are using aws via docker, symlink would be invalid. Hence just copy.
 | ~/.dipu/.aws/config      | ~/.aws/config      |
 | ~/.dipu/.aws/credentials | ~/.aws/credentials |
 
+### Copy system level config file
+
+Use the custom xdm-archlinux config, which will set the wallpaper on login screen.
+NOTE: It includes an `xrandr` command to set initial screen resolution to `1920x1080 @ 60Hz`. However, on
+resizing the window or fullscreen, the system will auto resize the resolution.
+
+``` sh
+sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xsetup /etc/X11/xdm/archlinux/Xsetup
+sudo cp ~/.dipu/store/cp-etc_X11_xdm_archlinux_Xresources /etc/X11/xdm/archlinux/Xresources
+
+```
+
+## Add encrypted data disks
+
+We are using **LUKS on partition** for encrypting the partition in the virtual hard disk with a passphrase.
+
+### How to create a new encrypted disk
+
+Create a regular virtual hard disk and add to your machine, and then locate it in the `/dev` folder. Let's
+say it is mounted at `/dev/sdd` for example. Then create the encrypted partition as follows:
+
+``` sh
+# Create the partition on /dev/sdd
+
+sudo fdisk /dev/sdd
+
+# Now you should have the newly created partition at /dev/sdd1
+
+sudo cryptsetup -y -v luksFormat /dev/sdd1
+
+# It will ask for a passphrase. Provide one and remember it, since you would need it later to mount it
+
+cryptsetup open /dev/sdd1 cryptroot
+mkfs.ext4 /dev/mapper/cryptroot
+cryptsetup close cryptroot
+
+```
+
+### Mount encrypted disk partition
+
+Note the **UUID** of the partition. To list out details of all disks added to the virtual machine,
+you can use the command `lsblk -o NAME,PATH,LABEL,UUID,SIZE,TYPE,MOUNTPOINTS`.
+
+For convenience, there is a script file `.bin/mount-crypts`. Edit it to replace two parameters `vol_name` and
+`vol_uuid` as per your need. Then, you can call it anytime after a machine restart to mount that
+encrypted partition at `~/$vol_name`. It'll ask for the passphrase, provide the one you set while
+creating the encrypted disk.
+
 ## Optional
 
+### video wallpaper
 To use the video wallpaper use the command
 
 ``` sh
 wp-video
 
 ```
+
+### Install clj-kondo
+``` sh
+cd /tmp
+git clone https://aur.archlinux.org/clj-kondo-bin.git
+cd clj-kondo-bin
+sudo makepkg -si
+
+```
+
+### Install babashka
+``` sh
+cd /tmp
+git clone https://aur.archlinux.org/babashka-bin.git
+cd babashka-bin
+sudo makepkg -si
+
+```
+
+### Misc SDKs
+For Intel MKL and plantuml jar, either get it from the data disk (dipu.vmdk)
+or download from the internet. These being large binary files, not included in the repo.
+
+Copy the plantuml jar file to `~/.sdk/plantuml.jar`.
+Copy the MKL lib folder to `~/.sdk/mkl/lib` folder.
+
+## The End

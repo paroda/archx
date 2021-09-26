@@ -436,7 +436,7 @@ wp-video
 cd /tmp
 git clone https://aur.archlinux.org/clj-kondo-bin.git
 cd clj-kondo-bin
-sudo makepkg -si
+makepkg -si
 
 ```
 
@@ -445,7 +445,7 @@ sudo makepkg -si
 cd /tmp
 git clone https://aur.archlinux.org/babashka-bin.git
 cd babashka-bin
-sudo makepkg -si
+makepkg -si
 
 ```
 

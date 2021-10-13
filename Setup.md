@@ -449,6 +449,12 @@ makepkg -si
 
 ```
 
+### Install other tools
+
+``` sh
+sudo pacman -Syu flameshot
+```
+
 ### Misc SDKs
 For Intel MKL and plantuml jar, either get it from the data disk (dipu.vmdk)
 or download from the internet. These being large binary files, not included in the repo.

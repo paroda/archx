@@ -36,4 +36,4 @@ vmware-user &
 picom &
 ~/.bin/wp-photo &
 #~/.bin/wp-video &
-exec i3
+exec dbus-launch i3

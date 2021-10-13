@@ -1,7 +1,14 @@
 echo hi Developer!
 
-set -gx PATH $HOME/.bin $HOME/.cargo/bin $PATH
-set -gx LD_LIBRARY_PATH /home/dipu/.sdk/mkl/lib:$LD_LIBRARY_PATH
+# eliminate redundant paths in child shell
+if [ -z $path_already_set ]
+   set -gx PATH $HOME/.bin $HOME/.cargo/bin /opt/jdk-17/bin $PATH
+   set -gx LD_LIBRARY_PATH /home/dipu/.sdk/mkl/lib:$LD_LIBRARY_PATH
+   set -x path_already_set yes
+end
+
+set -gx PICO_SDK_PATH /home/dipu/my/pico/pico-sdk
+
 set -gx fish_term24bit 1
 
 ############################################################

@@ -126,6 +126,15 @@ fi # end of EMACS vterm config
 
 # User specific aliases and functions
 
+alias hostname='echo archX'
 alias ec='emacsclient -n'
 
-alias hostname='echo archX'
+# eliminate redundant paths in child shell
+if [ -z $path_already_set ]
+then
+    export PATH=$HOME/.bin:$HOME/.cargo/bin:/opt/jdk-17/bin:$PATH
+    export LD_LIBRARY_PATH=/home/dipu/.sdk/mkl/lib:$LD_LIBRARY_PATH
+    export path_already_set=yes
+fi
+
+export PICO_SDK_PATH=/home/dipu/my/pico/pico-sdk

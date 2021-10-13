@@ -2,5 +2,5 @@
 /.ssh/id_rsa*
 /.aws/credentials
 /.wallpapers/videos
-/.bin/clj-kondo
 /.local/share/fonts/.uuid
+/tmp

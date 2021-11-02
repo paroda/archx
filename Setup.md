@@ -440,6 +440,15 @@ makepkg -si
 
 ```
 
+### Install cljstyle
+
+``` sh
+cd /tmp
+git clone https://aur.archlinux.org/cljstyle-bin.git
+cd cljstyle-bin
+makepkg -si
+```
+
 ### Install babashka
 ``` sh
 cd /tmp

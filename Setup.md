@@ -241,6 +241,7 @@ nvim ~/.ssh/config
 git clone git@github.com:paroda/clojure-deps-edn.git ~/.clojure
 
 # emacs
+# see optional section at the end to install the latest development version of emacs
 sudo pacman -Syu ripgrep the_silver_searcher ditaa graphviz gnuplot pandoc emacs
 
 # install vterm support
@@ -456,6 +457,35 @@ git clone https://aur.archlinux.org/babashka-bin.git
 cd babashka-bin
 makepkg -si
 
+```
+
+### Install development version of emacs from AUR
+
+``` sh
+cd /tmp
+git clone https://aur.archlinux.org/libgccjit.git
+cd libgccjit
+# the signature fails to be verified, hence ignore it as a quick workaround
+makepkg -si --skippgpcheck
+
+cd /tmp
+git clone https://aur.archlinux.org/emacs-git.git
+cd emacs-git
+makepkg -si
+
+# this would download the source and build, however, it may not have native compilation enabled
+emacs --batch --eval '(print (native-comp-available-p))'
+
+# if it results 't' then all done. but if it says 'nil', then we need to redo it manually
+cd src/emacs-git
+# check config.log file and note the command starting with './configure'. it would have a bunch of
+# parameters. copy that line and add a new parameter '--with-native-compilation'
+# and execute it.
+./configure --with-native-compilation --and-some-more-paramters..
+
+makepkg -Rif
+
+# now test again as above, it should now return 't'
 ```
 
 ### Install other tools

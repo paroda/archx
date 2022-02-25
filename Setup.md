@@ -242,7 +242,7 @@ git clone git@github.com:paroda/clojure-deps-edn.git ~/.clojure
 
 # emacs
 # see optional section at the end to install the latest development version of emacs
-sudo pacman -Syu ripgrep the_silver_searcher ditaa graphviz gnuplot pandoc emacs
+sudo pacman -Syu ripgrep the_silver_searcher ditaa graphviz gnuplot emacs
 
 # install vterm support
 sudo pacman -Syu cmake libvterm
@@ -251,13 +251,13 @@ sudo pacman -Syu cmake libvterm
 git clone git@github.com:paroda/prelude.git ~/.emacs.d
 pushd ~/.emacs.d ; git checkout archx ; popd
 
+# further you would need to install the fonts
+# font files are in folder [git root]/.local/share/fonts
+
 # install docker
 sudo pacman -Syu docker docker-compose
 sudo usermod -aG docker dipu
 sudo systemctl enable docker
-
-# install postgres sql client
-sudo pacman -Syu postgresql
 
 ```
 
@@ -459,6 +459,13 @@ makepkg -si
 
 ```
 
+### Install postgresql client
+
+``` sh
+sudo pacman -Syu postgresql-lib
+
+```
+
 ### Install development version of emacs from AUR
 
 ``` sh
@@ -488,7 +495,28 @@ makepkg -Rif
 # now test again as above, it should now return 't'
 ```
 
-### Install other tools
+### Enable pdf generation in emacs
+
+Install pandoc to create pdf in emacs
+
+``` sh
+sudo pacman -Syu pandoc
+
+```
+
+Edit ~/.emacs.d/personal/init.el
+Add **pandoc-mode** to *my-packages* list.
+
+Enable pandoc
+
+``` emacs-lisp
+(require 'pandoc-mode)
+(add-hook 'markdown-mode-hook 'pandoc-mode)
+(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+
+```
+
+### Install screenshot tool
 
 ``` sh
 sudo pacman -Syu flameshot

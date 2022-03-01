@@ -26,7 +26,7 @@ alert = 70.0
 [[block]]
 block = "disk_space"
 path = "/home/dipu/.dipu"
-alias = "dipu"
+alias = "🛠"
 info_type = "used"
 format = "{icon} {alias}: {used}/{total}"
 unit = "GB"
@@ -36,7 +36,7 @@ alert = 50.0
 [[block]]
 block = "disk_space"
 path = "/home/dipu/my"
-alias = "my"
+alias = "😐"
 info_type = "used"
 format = "{icon} {alias}: {used}/{total}"
 unit = "GB"
@@ -45,8 +45,8 @@ alert = 50.0
 
 [[block]]
 block = "disk_space"
-path = "/home/dipu/vacuumlabs"
-alias = "vlab"
+path = "/home/dipu/allstreet"
+alias = "🚀"
 info_type = "used"
 format = "{icon} {alias}: {used}/{total}"
 unit = "GB"

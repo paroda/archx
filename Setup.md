@@ -351,6 +351,8 @@ Now reboot.
 | ~/.dipu/.config/i3/config                             | ~/.config/i3/config                             |
 | ~/.dipu/.config/i3/layouts                            | ~/.config/i3/layouts                            |
 | ~/.dipu/.config/i3status-rust/config.toml             | ~/.config/i3status-rust/config.toml             |
+| ~/.dipu/.config/rofi/config.rasi                      | ~/.config/rofi/config.rasi                      |
+| ~/.dipu/.config/rofi/dracula.rasi                     | ~/.config/rofi/dracula.rasi                     |
 | ~/.dipu/.config/nvim/init.vim                         | ~/.config/nvim/init.vim                         |
 | ~/.dipu/.config/picom/picom.conf                      | ~/.config/picom/picom.conf                      |
 | ~/.dipu/.config/conky/conky.conf                      | ~/.config/conky/conky.conf                      |

@@ -135,4 +135,4 @@ configuration {
 /*      me-accept-custom: "Control+MouseD1";*/
 }
 
-@theme "/usr/share/rofi/themes/dracula.rasi"
+@theme "dracula.rasi"

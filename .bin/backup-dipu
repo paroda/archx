@@ -1,9 +1,0 @@
-#!/bin/bash
-
-disk=~/.dipu
-arch=/tmp/dipu.archx.tar
-excl=$disk/tar.excludes
-
-rm -rf $arch
-
-tar -X $excl -cf $arch -C $disk .

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-xwinwrap -ov -ni -fs -un -s -st -sp -b -nf -- mplayer -fps 12 -loop 0 -nosound -osdlevel 0 -vo x11 -fixed-vo -noconsolecontrols -wid WID ~/.wallpapers/video &> /dev/null &

@@ -1,4 +1,5 @@
-echo hi Developer!
+status is-login
+and echo hi Developer!
 
 # eliminate redundant paths in child shell
 if [ -z $path_already_set ]
@@ -107,3 +108,15 @@ end
 
 end # end of INSIDE_EMACS vterm config
 ############################################################
+
+if [ "$TERM" = "dumb" ]
+
+function fish_prompt
+    echo "> "
+end
+
+function fish_right_prompt; end
+function fish_greeting; end
+function fish_title; end
+
+end

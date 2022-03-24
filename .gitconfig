@@ -3,5 +3,7 @@
 	email = paroda@gmail.com
 [includeIf "gitdir:~/allstreet/"]
 	path = ~/allstreet/.gitconfig
+[includeIf "gitdir:/mnt/pradyumna/allstreet/"]
+	path = /mnt/pradyumna/allstreet/.gitconfig
 [init]
 	defaultBranch = master

@@ -532,4 +532,18 @@ or download from the internet. These being large binary files, not included in t
 Copy the plantuml jar file to `~/.sdk/plantuml.jar`.
 Copy the MKL lib folder to `~/.sdk/mkl/lib` folder.
 
+### Setup VNC connection to PCX workstation
+
+Assuming the workstation PCX running ArchLinux with vncserver is already setup
+and accessible by hostname *pcx*.
+
+Install vncviewer and copy the shortcuts for rofi launcher.
+
+``` sh
+sudo pacman -Syu tigervnc
+sudo cp ~/.dipu/store/cp-usr_share_applications_vncviewer.desktop /usr/share/applications/vncviewer.desktop
+sudo cp ~/.dipu/store/cp-usr_share_applications_emacs-pcx.desktop /usr/share/applications/emacs-pcx.desktop
+
+```
+
 ## The End

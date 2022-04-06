@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Emacs-PCX
+GenericName=Text Editor
+Comment=Edit text
+Exec=emacs-pcx
+Icon=emacs
+Type=Application
+Terminal=false
+Categories=Development;TextEditor;
+StartupWMClass=Emacs
+Keywords=Text;Editor;

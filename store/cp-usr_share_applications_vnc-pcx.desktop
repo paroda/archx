@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Vncviewer-PCX
+GenericName=Remote Desktop Viewer
+Comment=Connect to VNC server PCX and display remote desktop
+Exec=vnc-pcx
+Icon=tigervnc
+Terminal=false
+Type=Application
+StartupWMClass=TigerVNC Viewer: Connection Details
+Categories=Network;RemoteAccess;

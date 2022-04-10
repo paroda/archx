@@ -4,3 +4,4 @@
 /.wallpapers/videos
 /.local/share/fonts/.uuid
 /tmp
+/.emacs.d/.persistent/scratch

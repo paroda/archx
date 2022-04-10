@@ -311,8 +311,8 @@ virtual machines do not maintain the order of disk files in `/dev`. A more relia
 the `UUID` as shown next.
 
 ``` sh
-/dev/sdb1      /home/dipu/.dipu           ext4       rw,relatime       0 1
-/dev/sdc1      /home/dipu/my              ext4       rw,relatime       0 1
+/dev/sdb1      /home/dipu/.dipu           ext4       auto,nofail,rw,relatime       0 1
+/dev/sdc1      /home/dipu/my              ext4       auto,nofail,rw,relatime       0 1
 
 ```
 
@@ -435,6 +435,9 @@ wp-video
 
 ```
 
+However, you would need a video file (.mp4) to play as the wallpaper. Save the video file in the
+folder `~/.dipu/.wallpapers/videos` and update the symlink `~/.dipu/.wallpapers/video` to it.
+
 ### Install clj-kondo
 ``` sh
 cd /tmp
@@ -541,8 +544,10 @@ Install vncviewer and copy the shortcuts for rofi launcher.
 
 ``` sh
 sudo pacman -Syu tigervnc
-sudo cp ~/.dipu/store/cp-usr_share_applications_vncviewer.desktop /usr/share/applications/vncviewer.desktop
+sudo cp ~/.dipu/store/cp-usr_share_applications_vnc-pcx.desktop /usr/share/applications/vnc-pcx.desktop
 sudo cp ~/.dipu/store/cp-usr_share_applications_emacs-pcx.desktop /usr/share/applications/emacs-pcx.desktop
+sudo ln -s /home/dipu/.dipu/.bin/vnc-pcx /usr/local/bin/
+sudo ln -s /home/dipu/.dipu/.bin/emacs-pcx /usr/local/bin/
 
 ```
 

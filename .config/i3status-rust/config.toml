@@ -18,7 +18,7 @@ format = "{running}/{total}"
 block = "disk_space"
 path = "/"
 info_type = "used"
-format = "{icon} {used}/{total}"
+format = "{icon} : {used}/{total}"
 unit = "GB"
 warning = 80.0
 alert = 70.0
@@ -26,9 +26,8 @@ alert = 70.0
 [[block]]
 block = "disk_space"
 path = "/home/dipu/.dipu"
-alias = "🛠"
 info_type = "used"
-format = "{icon} {alias}: {used}/{total}"
+format = "{icon} 🛠: {used}/{total}"
 unit = "GB"
 warning = 80.0
 alert = 50.0
@@ -36,19 +35,8 @@ alert = 50.0
 [[block]]
 block = "disk_space"
 path = "/home/dipu/my"
-alias = "😐"
 info_type = "used"
-format = "{icon} {alias}: {used}/{total}"
-unit = "GB"
-warning = 80.0
-alert = 50.0
-
-[[block]]
-block = "disk_space"
-path = "/home/dipu/allstreet"
-alias = "🚀"
-info_type = "used"
-format = "{icon} {alias}: {used}/{total}"
+format = "{icon} ★: {used}/{total}"
 unit = "GB"
 warning = 80.0
 alert = 50.0

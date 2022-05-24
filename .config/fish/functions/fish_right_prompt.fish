@@ -20,7 +20,7 @@ function my_git_prompt --description 'short status of git vcs'
     set -l git_root (set_color 996)" "$root
 
     set -l br (git symbolic-ref --short HEAD 2>/dev/null;
-    or git show-ref --head -s --abbrev | head -n1 2>/dev/null)
+    or git show-ref --head -s --abbrev 2>/dev/null | head -n1 2>/dev/null)
     set br (string replace -ar '(\w)[^/]+/' '$1/' $br)
     set -l branch (set_color 66c)" $br"
 
@@ -57,7 +57,7 @@ function my_git_prompt --description 'short status of git vcs'
 
     set -l git_repo (set_color -o 888) "" # \ue0a0 #\u2387
 
-    test (git stash list | wc -l) -gt 0
+    test (git stash list 2>/dev/null | wc -l) -gt 0
     and set -l git_stash (set_color 696) " "  # has stash
 
     set -l cur_dir (readlink -f (pwd))

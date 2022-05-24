@@ -129,6 +129,9 @@ fi # end of EMACS vterm config
 alias hostname='echo archX'
 alias ec='emacsclient -n'
 
+alias g-clj="grep -ri --color  --include=*.clj --include=*.cljs --include=*.cljc  --exclude-dir=\*compiled\* --exclude-dir=\*target\* --exclude-dir=\*.shadow-cljs\*  --exclude-dir=\*data\* "
+alias g-edn="grep -ri --color  --include=*.edn  --exclude-dir=\*compiled\* --exclude-dir=\*target\* --exclude-dir=\*.shadow-cljs\*  --exclude-dir=\*data\* "
+
 # eliminate redundant paths in child shell
 if [ -z $path_already_set ]
 then

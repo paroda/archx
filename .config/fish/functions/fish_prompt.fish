@@ -7,7 +7,7 @@ function fish_prompt --description 'Write out the prompt'
     echo -n -s (set_color $bg)""
     # echo -n -s (set_color $bg)""
     # echo -n -s (set_color -b $bg $lg)"  "
-    echo -n -s (set_color -b $bg $lg)" 💻𝛌 "
+    echo -n -s (set_color -b $bg $lg)" 💻 "
     # echo -n -s (set_color -b normal $bg)" "
     echo -n -s (set_color -b normal $bg)""
     # echo -n -s (set_color -b normal $bg)""

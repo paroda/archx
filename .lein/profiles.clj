@@ -1,5 +1,5 @@
 {:user
- {:dependencies [[org.clojure/clojure "RELEASE"]
+ {:dependencies [[org.clojure/clojure "1.10.3"]
                  [nrepl "RELEASE"]
                  ;; [refactor-nrepl "RELEASE" :exclusions [nrepl]]
                  [cider/cider-nrepl "RELEASE" :exclusions [nrepl]]]

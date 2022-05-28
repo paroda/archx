@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -tX pcx "cd; exec fish -l"
+ssh -tY pcx "cd; exec fish -l"

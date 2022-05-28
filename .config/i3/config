@@ -39,7 +39,7 @@ font pango:FiraCode Nerd Font Mono 10
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # restore the main layout
-exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/layouts/pcx.json'"
+exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/layouts/main.json'"
 exec --no-startup-id "emacs"
 exec --no-startup-id "google-chrome-stable"
 exec --no-startup-id "alacritty -e fish"

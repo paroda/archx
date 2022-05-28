@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -X pcx "cd; exec emacs"
+ssh -Y pcx "cd; exec emacs"

@@ -1,0 +1,4 @@
+#!/bin/bash
+# ssh -tY -L8083:localhost:8083 -L3000:localhost:3000 -L9630:localhost:9630 pcx "cd; exec fish -l"
+# ssh -tY -L3009:localhost:3009 pcx "cd; exec fish -l"
+ssh -tY -L3013:localhost:3013 pcx "cd; exec fish -l"

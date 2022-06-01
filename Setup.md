@@ -113,6 +113,15 @@ pacman-key --populate archlinux
 
 ```
 
+## Enable pacman parallel downloads
+
+Edit file `/etc/pacman.conf` and uncomment the following line:
+
+``` sh
+ParallelDownloads = 5
+
+```
+
 ## Enable Audio
 
 The audio works mostly out of box, though it would be initially muted.

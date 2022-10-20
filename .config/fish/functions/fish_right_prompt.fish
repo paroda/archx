@@ -24,10 +24,10 @@ function my_git_prompt --description 'short status of git vcs'
     set br (string replace -ar '(\w)[^/]+/' '$1/' $br)
     set -l branch (set_color 66c)" $br"
 
-    test (git status -bs 2>/dev/null | egrep '^[^ ?]' | wc -l) -gt 1
+    test (git status -bs 2>/dev/null | grep -E '^[^ ?]' | wc -l) -gt 1
     and set -l has_staged
 
-    test (git status -bs 2>/dev/null | egrep '^.\S' | wc -l) -gt 1
+    test (git status -bs 2>/dev/null | grep -E '^.\S' | wc -l) -gt 1
     and set -l has_dirty
 
     if set -q has_dirty

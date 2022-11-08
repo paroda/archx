@@ -5,3 +5,7 @@
 /.local/share/fonts/.uuid
 /tmp
 /.emacs.d/.persistent/scratch
+/rtags/
+/.bin/rc
+/.bin/rdm
+/.bin/rp

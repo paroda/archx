@@ -1,25 +1,35 @@
+icons_format = "{icon}"
+
+[theme]
 theme = "nord-dark"
-icons = "awesome"
+
+[icons]
+icons = "awesome4"
 
 [[block]]
 block = "pacman"
 interval = 600
-format = "{pacman} updates available"
-format_singular = "{pacman} update available"
-format_up_to_date = "system up to date"
+format = " $icon $pacman updates available "
+format_singular = " $icon $pacman update available "
+format_up_to_date = " system up to date "
 critical_updates_regex = "(linux|linux-lts|linux-zen)"
-on_click = "fakeroot pacman -Qu --dbpath /tmp/checkup-db-dipu/ | wofi --show dmenu"
+[[block.click]]
+button = "left"
+cmd = "fakeroot pacman -Qu --dbpath /tmp/checkup-db-i3statusrs/ | rofi -show window"
+[[clock.click]]
+button = "right"
+update = true
 
 [[block]]
 block = "docker"
-format = "{running}/{total}"
+format = "  $icon $running/$total "
 
 [[block]]
 block = "disk_space"
 path = "/"
 info_type = "used"
-format = "{icon} : {used}/{total}"
-unit = "GB"
+format = "  $icon :$used/$total "
+alert_unit = "GB"
 warning = 80.0
 alert = 70.0
 
@@ -27,8 +37,8 @@ alert = 70.0
 block = "disk_space"
 path = "/home/dipu/.dipu"
 info_type = "used"
-format = "{icon} 🛠: {used}/{total}"
-unit = "GB"
+format = "  $icon 🛠:$used/$total "
+alert_unit = "GB"
 warning = 80.0
 alert = 70.0
 
@@ -36,28 +46,28 @@ alert = 70.0
 block = "disk_space"
 path = "/home/dipu/my"
 info_type = "used"
-format = "{icon} ★: {used}/{total}"
-unit = "GB"
+format = "  $icon ★:$used/$total "
+alert_unit = "GB"
 warning = 80.0
 alert = 50.0
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
+format = "  $icon $mem_used/$mem_total($mem_used_percents) "
 warning_mem = 80
 critical_mem = 95
 
 [[block]]
 block = "cpu"
 interval = 1
+format = "  $icon $utilization"
 
 [[block]]
 block = "load"
 interval =  1
-format = "{1m}"
+format = "  $icon $1m.eng(w:2) "
 
 [[block]]
 block = "time"
 interval = 60
-format = "%a %d %m %R"
+format = "  $icon $timestamp.datetime(f:'%a %d/%m %R') "

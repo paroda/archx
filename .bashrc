@@ -137,4 +137,4 @@ then
     export path_already_set=yes
 fi
 
-export PICO_SDK_PATH=/home/dipu/my/pico/pico-sdk
+# export PICO_SDK_PATH=/home/dipu/my/pico/pico-sdk

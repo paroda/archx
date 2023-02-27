@@ -7,7 +7,7 @@ if [ -z $path_already_set ]
    set -x path_already_set yes
 end
 
-set -gx PICO_SDK_PATH /home/dipu/my/pico/pico-sdk
+# set -gx PICO_SDK_PATH /home/dipu/my/pico/pico-sdk
 
 set -gx fish_term24bit 1
 

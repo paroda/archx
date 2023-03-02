@@ -206,8 +206,8 @@ bar {
 
     i3bar_command i3bar --transparency
 
-    position top
-    font pango:DejaVu Sans Mono, FontAwesome 14
+    position bottom #top
+    font pango:DejaVu Sans Mono, FontAwesome 18
     status_command i3status-rs
     colors {
 	    separator #666666

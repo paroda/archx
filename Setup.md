@@ -366,6 +366,7 @@ Now reboot.
 | ~/.dipu/.config/nvim/init.vim                         | ~/.config/nvim/init.vim                         |
 | ~/.dipu/.config/picom/picom.conf                      | ~/.config/picom/picom.conf                      |
 | ~/.dipu/.config/conky/conky.conf                      | ~/.config/conky/conky.conf                      |
+| ~/.dipu/.config/mimeapps.list                         | ~/.config/mimeapps.list                         |
 |                                                       |                                                 |
 | ~/.dipu/.emacs.d/.persistent                          | ~/.emacs.d/.persistent                          |
 | ~/.dipu/.lein/profiles.clj                            | ~/.lein/profiles.clj                            |

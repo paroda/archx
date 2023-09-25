@@ -56,7 +56,8 @@ bindsym $mod+Return exec alacritty -e fish
 
 # start a new frame of emacs (must be running in server mode)
 bindsym $mod+e exec emacsclient -c -n
-bindsym $mod+Mod1+e exec ssh -X pcx "emacsclient -c -n"
+bindsym $mod+Mod1+e exec ssh -Y pcx "emacsclient -c -n"
+bindsym $mod+Mod1+k exec ssh -Y pcx "konsole --profile fish &>/dev/null"
 
 # start browser
 bindsym $mod+b exec google-chrome-stable

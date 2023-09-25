@@ -181,7 +181,7 @@ The expected disk file size at this point is 2.4 GB.
 ``` sh
 # install minimal system
 sudo pacman -Syu i3-wm dmenu xorg-server xorg-xinit xorg-xdm openssh ttf-fira-mono
-sudo pacman -Syu xorg-xrandr fakeroot git fish alacritty ranger exa
+sudo pacman -Syu xorg-xrandr fakeroot git fish alacritty ranger eza
 
 # enable X11 forwarding in ssh
 sudo nvim /etc/ssh/sshd_config

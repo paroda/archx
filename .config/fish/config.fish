@@ -18,9 +18,9 @@ set -gx fish_term24bit 1
 alias aws "docker run --rm -it -v ~/.aws:/root/.aws -v (pwd):/aws amazon/aws-cli "
 alias ec "emacsclient -n "
 
-alias ls "exa --color=always --icons --group-directories-first --git"
-alias ll "exa --color=always --icons --group-directories-first --git --long"
-alias la "exa --color=always --icons --group-directories-first --git --long --all"
+alias ls "eza --color=always --icons --group-directories-first --git"
+alias ll "eza --color=always --icons --group-directories-first --git --long"
+alias la "eza --color=always --icons --group-directories-first --git --long --all"
 
 alias g-clj="grep -ri --color --include='*.clj' --include='*.cljs' --include='*.cljc'  --exclude-dir='*compiled*' --exclude-dir='*target*' --exclude-dir='*.shadow-cljs*'  --exclude-dir='*data*' "
 alias g-edn="grep -ri --color --include='*.edn'  --exclude-dir='*compiled*' --exclude-dir='*target*' --exclude-dir='*.shadow-cljs*'  --exclude-dir='*data*' "

@@ -344,7 +344,7 @@ Now reboot.
 | ~/.dipu/.xinitrc                                      | ~/.xinitrc                                      |
 | ~/.dipu/.Xresources                                   | ~/.Xresources                                   |
 |                                                       |                                                 |
-| ~/.dipu/.config/alacritty/alacritty.yml               | ~/.config/alacritty/alacritty.yml               |
+| ~/.dipu/.config/alacritty/alacritty.toml              | ~/.config/alacritty/alacritty.toml              |
 | ~/.dipu/.config/fish/config.fish                      | ~/.config/fish/config.fish                      |
 | ~/.dipu/.config/fish/functions/hostname.fish          | ~/.config/fish/functions/hostname.fish          |
 | ~/.dipu/.config/fish/functions/fish_prompt.fish       | ~/.config/fish/functions/fish_prompt.fish       |

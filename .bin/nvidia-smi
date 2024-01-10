@@ -1,0 +1,4 @@
+#!/bin/bash
+echo power.draw [W], utilization.gpu [%], memory.used [MiB], temperature.gpu
+echo 19.36 W, 0 %, 23858 MiB, 57
+echo 28.70 W, 0 %, 23834 MiB, 55

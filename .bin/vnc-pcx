@@ -1,3 +1,0 @@
-#!/bin/bash
-vncviewer -passwd /home/dipu/.vnc/passwd pcx:5900 &>/dev/null &
-disown
